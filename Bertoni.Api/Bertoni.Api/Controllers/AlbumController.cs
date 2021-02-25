@@ -1,6 +1,7 @@
-﻿using Bertoni.Api.Albumes.Models;
+﻿
 using Bertoni.Api.Albumes.Querys;
 using Bertoni.Api.Fotos.Querys;
+using Bertoni.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

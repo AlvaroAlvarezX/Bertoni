@@ -1,3 +1,5 @@
+using Bertoni.Web.DataSource;
+using Bertoni.Web.DataSource.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +25,13 @@ namespace Bertoni.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+          
+            services.AddScoped<IAlbumDataSource, BertoniApiDataSource>();
+            var mvcBuilder = services.AddControllersWithViews();
+
+#if DEBUG
+            mvcBuilder.AddRazorRuntimeCompilation();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

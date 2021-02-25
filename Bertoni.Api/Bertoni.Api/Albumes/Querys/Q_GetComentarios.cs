@@ -1,4 +1,5 @@
-﻿using Bertoni.Api.Albumes.Models;
+﻿
+using Bertoni.Core.Models;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -29,6 +30,7 @@ namespace Bertoni.Api.Albumes.Querys
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var newValue =await  response.Content.ReadAsAsync<IEnumerable<Comments>>();
+            newValue = newValue.Where(x => x.PostId == request.PostId).ToList();
 
             return newValue;
         }

@@ -1,4 +1,5 @@
-﻿using Bertoni.Api.Albumes.Models;
+﻿
+using Bertoni.Core.Models;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -30,7 +31,7 @@ namespace Bertoni.Api.Fotos.Querys
             response.EnsureSuccessStatusCode();
             var newValue = await response.Content.ReadAsAsync<List<Photo>>();
 
-            return newValue;
+            return newValue.Where(x => x.AlbumID == request.AlbumID).ToList(); ;
         }
     }
 }

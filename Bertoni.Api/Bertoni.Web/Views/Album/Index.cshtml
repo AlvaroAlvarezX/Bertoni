@@ -1,0 +1,104 @@
+﻿
+@using Bertoni.Core.Models;
+@model List<Album>
+
+
+<h2>Select you preferred album</h2>
+
+
+<hr>
+
+<div style="display:none" id="baseUrlHolder">
+    @ViewBag.Url
+</div>
+
+@Html.DropDownList("Album", new SelectList(Model, "Id", "Title"), "Select an album", new { @class = "form-control form-control-sm" })
+
+
+<table class="table table-condensed table-responsive" id="tableta">
+ 
+    <thead>
+        <tr>
+            <th>Photo Id</th>
+            <th>Title</th>
+            <th> Thumbnail </th>
+            <th>View comments </th>
+        </tr>
+    </thead>
+    <tbody style="font-size:small">
+    </tbody>
+
+</table>
+
+<ol id="Comments"></ol>
+
+@*<div class="accordion" id="accordionExample">
+
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var a = Model[i];
+
+            <div class="card" onclick="LoadTable(@a.Id)">
+                <div class="card-header" id="@string.Concat("cardHeader", a.Id)">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@string.Concat("collapse", a.Id)" aria-expanded="false" aria-controls="@string.Concat("collapse", a.Id)">
+                            @string.Concat("Album :", a.Title)
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="@string.Concat("collapse", a.Id)" class="collapse" aria-labelledby="@string.Concat("cardHeader", a.Id)" data-parent="#accordionExample">
+                    <div class="card-body" id="@string.Concat("cardHeaderBody", a.Id)">
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>*@
+
+
+
+
+
+@*<table class="table table-condensed table-responsive" id="tableta">
+
+        <thead>
+            <tr>
+                <th>Album Id</th>
+                <th>Created by UserId</th>
+                <th> Album Title </th>
+                <th> View Album </th>
+            </tr>
+        </thead>
+        <tbody style="font-size:small">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var a = Model[i];
+
+                <tr>
+                    <td>@a.Id</td>
+                    <td>@a.UserId</td>
+                    <td>@a.Title</td>
+                </tr>
+            }
+
+
+        </tbody>
+
+    </table>*@
+
+@section scripts {
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="~/js/AccordionInit.js"></script>
+    <script src="~/js/Albums.js"></script>
+
+
+}

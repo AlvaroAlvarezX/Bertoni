@@ -1,4 +1,5 @@
-﻿using Bertoni.Api.Albumes.Models;
+﻿
+using Bertoni.Core.Models;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Bertoni.Api.Albumes.Querys
 {
-    public class Q_GetAlbumes : IRequest<IEnumerable<Models.Album>>
+    public class Q_GetAlbumes : IRequest<IEnumerable<Album>>
     {
 
     }
 
-    public class C_GetAlbumes : IRequestHandler<Q_GetAlbumes, IEnumerable<Models.Album>>
+    public class C_GetAlbumes : IRequestHandler<Q_GetAlbumes, IEnumerable<Album>>
     {
         IConfiguration _config;
         public C_GetAlbumes(IConfiguration config)
@@ -29,7 +30,7 @@ namespace Bertoni.Api.Albumes.Querys
             HttpClient client = new HttpClient();         
             HttpResponseMessage response =  await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            var newValue = await response.Content.ReadAsAsync<List<Models.Album>>();
+            var newValue = await response.Content.ReadAsAsync<List<Album>>();
 
             return newValue;
         }
