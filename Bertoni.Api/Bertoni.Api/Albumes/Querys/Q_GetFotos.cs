@@ -28,7 +28,7 @@ namespace Bertoni.Api.Fotos.Querys
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            var newValue = response.Content.ReadAsAsync<List<Photo>>().Result;
+            var newValue = await response.Content.ReadAsAsync<List<Photo>>();
 
             return newValue;
         }

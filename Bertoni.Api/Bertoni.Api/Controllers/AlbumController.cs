@@ -10,19 +10,25 @@ using System.Threading.Tasks;
 namespace Bertoni.Api.Controllers
 {
 
-    public class AlbumController : ApiController
+    public class AlbumesController : ApiController
     {
-        public async Task<IEnumerable<Album>> Index()
+        [HttpGet]
+        [Route("GetAlbumes")]
+        public async Task<IEnumerable<Album>> GetAlbumes()
         {
             return await Mediator.Send(new Q_GetAlbumes());
         }
 
-        public async Task<IEnumerable<Photo>> Photos(int albumId)
+        [HttpGet]
+        [Route("GetPhotos")]
+        public async Task<IEnumerable<Photo>> GetPhotos(int albumId)
         {
             return await Mediator.Send(new Q_GetFotos() { AlbumID = albumId });
         }
 
-        public async Task<IEnumerable<Comments>> Comments(int postId)
+        [HttpGet]
+        [Route("GetComments")]
+        public async Task<IEnumerable<Comments>> GetComments(int postId)
         {
             return await Mediator.Send(new Q_GetComentarios() { PostId = postId });
         }

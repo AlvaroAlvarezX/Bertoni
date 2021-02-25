@@ -29,7 +29,7 @@ namespace Bertoni.Api.Albumes.Querys
             HttpClient client = new HttpClient();         
             HttpResponseMessage response =  await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            var newValue = response.Content.ReadAsAsync<List<Models.Album>>().Result;
+            var newValue = await response.Content.ReadAsAsync<List<Models.Album>>();
 
             return newValue;
         }

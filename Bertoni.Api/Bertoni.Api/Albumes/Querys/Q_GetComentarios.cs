@@ -28,7 +28,7 @@ namespace Bertoni.Api.Albumes.Querys
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            var newValue = response.Content.ReadAsAsync<List<Comments>>().Result;
+            var newValue =await  response.Content.ReadAsAsync<IEnumerable<Comments>>();
 
             return newValue;
         }
